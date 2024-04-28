@@ -1,15 +1,23 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 
-import MainPage from "./Components/MainPage/MainPage";
+import Navigation from "./Pages/Navigation";
+import MainPage from "./Pages/MainPage";
+import Login from "./Pages/Login";
+import Register from "./Pages/Register";
 
 function App() {
   return (
     <BrowserRouter>
       <div>
-        <Routes>
-          <Route path="/" exact element={<MainPage/>}/>
-        </Routes>
+        <Navigation />
+        <div>
+          <Routes>
+            <Route path="/" exact element={<MainPage/>}/>
+            <Route path="/login" exact element={<Login/>}/>
+            <Route path="/register" exact element={<Register/>}/>
+          </Routes>
+        </div>
       </div>
     </BrowserRouter>
   );

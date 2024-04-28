@@ -1,0 +1,19 @@
+.page-title-text{
+    font-family: "Comic Sans MS", cursive;
+}
+
+.to-link-container {
+    text-align: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.to-link {
+    text-decoration: none;
+    color: black;
+}
+
+.to-link:hover {
+    color: blue;
+    text-decoration: underline;
+}

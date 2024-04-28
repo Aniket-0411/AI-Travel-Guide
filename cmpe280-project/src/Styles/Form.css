@@ -1,0 +1,46 @@
+.form-container {
+    align-items: center;
+}
+
+.form-title {
+    text-align: center;
+}
+
+.username-tf {
+    margin-bottom: 20px;
+    align-items: center;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.username-tf-setting{
+    width: 100%;
+}
+
+.password-tf {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-left: 25%;
+}
+
+.password-tf-setting{
+    width: 66.7%;
+}
+
+.submit-btn-container{
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.submit-btn {
+    height: 3.5em;
+}
+
+.err-container {
+    color: red;
+    margin-bottom: 20px;
+    text-align: center;
+    justify-content: center;
+}
