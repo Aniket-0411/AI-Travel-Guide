@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, TextField, IconButton, InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import axios from "axios";
 
 import "../Styles/Form.css";
 import "../Styles/General.css";
@@ -42,7 +43,7 @@ const Register = () => {
         setUserInput({...userInput, [e.target.name]: e.target.value});
     }
 
-    const register = (e) => {
+    const register = async (e) => {
         e.preventDefault();
         console.log(document.getElementById("confirm").value);
 
@@ -57,8 +58,22 @@ const Register = () => {
             document.getElementById("confirm").value = "";
         }
         else{
-            console.log(userInput);
-            // navigate("/")
+            try {
+                const url = "http://localhost:3001/accounts/signup";
+                const { data: res } = await axios.post(url, userInput);
+                localStorage.setItem("data", JSON.stringify(res.data));
+                navigate("/");
+                window.location.reload();
+            }
+            catch (error){
+                if (
+                    error.response &&
+                    error.response.status >= 400 &&
+                    error.response.status <= 500
+                ) {
+                    setError(error.response.data.message);
+                }
+            }
         }
     }
 
