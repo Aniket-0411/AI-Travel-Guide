@@ -30,16 +30,35 @@ router.post("/signup", async (req, res) => {
             
             const user = await new User({...req.body, password: hash}).save();
 
-            const data = {
-                username: user.username,
-            }
+            const token = user.generateAuthToken();
 
-            res.status(201).json({data: data});
+            res.status(200).json({token: token, username: user.username});
     }
     catch (error){
         res.status(500).json({message: "Internal Server Error"});
         console.log(error);
     }
-})
+});
+
+router.post("/login", async (req, res) => {
+    try {
+        const user = await User.findOne(
+            {$or: [{ email: req.body.username_email }, { username: req.body.username_email }]}
+        )
+        if (!user)
+            return res.status(401).json({message: "User not exists!"})
+
+        const validPassword = await bcrypt.compare(req.body.password, user.password)
+        if (!validPassword)
+            return res.status(401).json({message: "Invalid Email/Username or Password!"})
+
+        const token = user.generateAuthToken();
+
+        res.status(200).json({token: token, username: user.username});
+
+    } catch (error) {
+        res.status(500).json({message: "Internal Server Error"})
+    }
+});
 
 module.exports = router;

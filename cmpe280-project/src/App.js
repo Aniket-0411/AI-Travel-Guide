@@ -10,7 +10,7 @@ function App() {
   return (
     <BrowserRouter>
       <div>
-        <Navigation />
+        <Navigation/>
         <div>
           <Routes>
             <Route path="/" exact element={<MainPage/>}/>

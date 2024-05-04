@@ -47,3 +47,15 @@
 .nav-items-text:hover {
     color:rgb(181, 118, 1);
 }
+
+.nav-user {
+    list-style: none;
+    color: black;
+    cursor: pointer;
+}
+
+.nav-user-text {
+    font-size: 25px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}

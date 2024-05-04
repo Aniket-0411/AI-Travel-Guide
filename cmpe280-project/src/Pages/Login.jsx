@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, TextField, IconButton, InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import axios from 'axios';
 
 import "../Styles/Form.css";
 import "../Styles/General.css";
@@ -11,7 +12,7 @@ const Login = () => {
 
     const [showPassword, setShowPassword] = useState(false);
     const [userInput, setUserInput] = useState({
-        username: "",
+        username_email: "",
         password: "",
     });
     const [error, setError] = useState("");
@@ -33,7 +34,7 @@ const Login = () => {
         setUserInput({...userInput, [e.target.name]: e.target.value});
     }
 
-    const login = (e) => {
+    const login = async (e) => {
         e.preventDefault();
 
         if(userInput.username === "" || userInput.password === ""
@@ -41,8 +42,29 @@ const Login = () => {
             setError("Username and Password cannot be empty.")
         }
         else{
-            console.log(userInput);
-            navigate("/")
+            try {
+                const url = "http://localhost:3001/accounts/login";
+                const data = await axios.post(url, userInput);
+
+                var date = new Date();
+                date.setTime(date.getTime() + (2 * 24 * 60 * 60 * 1000));
+                var expires = "expires=" + date.toUTCString();
+
+                document.cookie = "token=" + data.data.token + ";" + expires + ";"
+                document.cookie = "username=" + data.data.username + ";" + expires + ";"
+
+                navigate("/");
+                window.location.reload();
+            }
+            catch (error){
+                if (
+                    error.response &&
+                    error.response.status >= 400 &&
+                    error.response.status <= 500
+                ) {
+                    setError(error.response.data.message);
+                }
+            }
         }
     }
 
@@ -55,8 +77,8 @@ const Login = () => {
                 <div className='username-tf'>
                     <TextField
                         className='username-tf-setting'
-                        name="username"
-                        label="username"
+                        name="username_email"
+                        label="Email or Username"
                         type="text"
                         variant='outlined'
                         required
@@ -68,7 +90,7 @@ const Login = () => {
                     <TextField
                         className='password-tf-setting'
                         name="password"
-                        label="password"
+                        label="Password"
                         type={showPassword ? "text" : "password"}
                         variant="outlined"
                         required

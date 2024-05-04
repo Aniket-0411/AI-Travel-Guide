@@ -60,8 +60,15 @@ const Register = () => {
         else{
             try {
                 const url = "http://localhost:3001/accounts/signup";
-                const { data: res } = await axios.post(url, userInput);
-                localStorage.setItem("data", JSON.stringify(res.data));
+                const data = await axios.post(url, userInput);
+
+                var date = new Date();
+                date.setTime(date.getTime() + (2 * 24 * 60 * 60 * 1000));
+                var expires = "expires=" + date.toUTCString();
+
+                document.cookie = "token=" + data.data.token + ";" + expires + ";"
+                document.cookie = "username=" + data.data.username + ";" + expires + ";"
+
                 navigate("/");
                 window.location.reload();
             }
