@@ -26,7 +26,7 @@ router.get("/", async(req, res) =>{
 
     res.status(200).json(completion.choices[0].message)
   }catch(error){
-    console.log("error", error)
+    console.log("=====ERROR=====\n", error)
     res.status(500).json(error)
   }
 })
