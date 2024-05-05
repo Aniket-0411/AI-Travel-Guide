@@ -4,9 +4,10 @@ const { OpenAI } = require("openai");
 const mongoose = require("mongoose");
 mongoose.set('strictQuery', false);
 
-require("dotenv").config();
+require("dotenv").config(); // Add .env file with keys in /src folder
 
 const accountRoutes = require('./routes/Accounts')
+const chatRoutes = require('./routes/chatgpt')
 
 const PORT = 3001;
 
@@ -14,6 +15,7 @@ const app = express();
 app.use(cors({credentials: true}));
 app.use(express.json());
 app.use("/accounts", accountRoutes);
+app.use("/chat", chatRoutes)
 
 try{
     mongoose.connect(
