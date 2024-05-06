@@ -1,7 +1,5 @@
 const router = require("express").Router();
 const { User, validate } = require("../models/User");
-const Joi = require('joi');
-const passwordComplexity = require('joi-password-complexity');
 const bcrypt = require('bcrypt');
 
 // URL Testing endpoint http://localhost:3001/accounts/
