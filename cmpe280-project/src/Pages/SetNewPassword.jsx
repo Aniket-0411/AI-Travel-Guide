@@ -19,7 +19,7 @@ const SetNewPassword = () => {
         return;
       }
 
-      const response = await axios.post(`http://localhost:3001/accounts/reset-password/${resetToken}`, { newPassword });
+      const response = await axios.post(`http://localhost:3001/resetpassword/${resetToken}`, { newPassword });
       setMessage(response.data.message);
       navigate('/login');
     } catch (error) {

@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { User, validate } = require("../models/User");
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
+const bcrypt = require('bcrypt');
 
 router.post("/", async (req, res) => {
     try {
@@ -63,6 +64,34 @@ router.post("/", async (req, res) => {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
     
+});
+
+router.post("/:resetToken", async (req, res) => {
+    try {
+        const { resetToken } = req.params;
+        const { newPassword } = req.body;
+
+        // Find user by reset token
+        const user = await User.findOne({ resetPasswordToken: resetToken, resetPasswordExpires: { $gt: Date.now() } });
+        if (!user)
+            return res.status(400).json({ message: "Invalid or expired reset token" });
+
+        // Hash the new password
+        const salt = await bcrypt.genSalt(12);
+        const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+        // Update user's password and clear reset token
+        user.password = hashedPassword;
+        user.resetPasswordToken = undefined;
+        user.resetPasswordExpires = undefined;
+        await user.save();
+
+        res.status(200).json({ message: "Password reset successfully" });
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
 });
 
 module.exports = router;
