@@ -34,10 +34,11 @@ export default function Chat(){
   function sendMessage(text){
     const message = convertToModel("user", "You", text)
   
-    addMessage([...messages, message])
+    addMessage(messages => [...messages, message])
 
     //Initiate API request
     AIprompt(text);
+    console.log(messages)
   }
 
   async function AIprompt(text){
@@ -52,9 +53,8 @@ export default function Chat(){
         }
       ).then(response => response.json())
       .then(json => {
-        console.log(json)
         let message = convertToModel("AI", "AI Travel Assistant", json)
-        addMessage([...messages, message])
+        addMessage(messages => [...messages, message])
       })
     } catch(error){
       console.log("error", error)
