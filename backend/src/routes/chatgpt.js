@@ -11,7 +11,7 @@ router.post("/", async(req, res) =>{
   try{ 
     user_prompt = req.body.prompt
 
-    completion = await openai.chat.completions.create({
+    completion = await client.chat.completions.create({
       model: "gpt-4-turbo",
       messages: [
         {
