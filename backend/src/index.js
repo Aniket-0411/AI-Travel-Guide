@@ -8,6 +8,7 @@ require("dotenv").config(); // Add .env file with keys in /src folder
 
 const accountRoutes = require('./routes/Accounts')
 const chatRoutes = require('./routes/chatgpt')
+const resetPasswordRoutes = require('./routes/resetpassword')
 
 const PORT = 3001;
 
@@ -16,6 +17,7 @@ app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(express.json());
 app.use("/accounts", accountRoutes);
 app.use("/chat", chatRoutes)
+app.use("/resetpassword", resetPasswordRoutes)
 
 try{
     mongoose.connect(
