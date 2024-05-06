@@ -109,10 +109,10 @@ const Login = () => {
                             )
                         }}
                     />
-                    <Link className="to-link" to="/login">Forget Password?</Link>
+                    <Link className="to-link" to="/reset-password">Forget Password?</Link>
                 </div>
                 <div className='to-link-container'>
-                    <Link className='to-link' to="/register">Don't have an account? Register.</Link>
+                    Don't have an account? <Link className='to-link' to="/register"><b>Register</b></Link>
                 </div>
                 {error && <div className='err-container'>{error}</div>}
                 <div className='submit-btn-container'>
