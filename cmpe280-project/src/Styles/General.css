@@ -21,3 +21,7 @@
 .times-new-roman {
     font-family: 'Times New Roman', Times, serif;
 }
+
+.margin-bot-2rem {
+    margin-bottom: 2rem;
+}

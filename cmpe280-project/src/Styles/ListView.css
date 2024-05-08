@@ -1,0 +1,85 @@
+.list-form {
+    margin-top: 2rem;
+}
+
+.list-tf {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 2rem;
+}
+
+.list-btns {
+    justify-content: center;
+    display: flex;
+    gap: 3rem;
+}
+
+.list-details {
+    cursor: pointer;
+}
+
+.list-summary {
+    text-align: center;
+    user-select: none;
+    margin-bottom: 2rem;
+    font-weight: bold;
+}
+
+.chat-container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f4f4f8;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-family: Arial, sans-serif;
+}
+
+.chat-container h1, .chat-container h2, .chat-container h3 {
+    color: #333;
+}
+
+.chat-container p {
+    line-height: 1.6;
+}
+
+.loading-container {
+    margin-top: 20px;
+    margin-left: 10%;
+}
+
+@keyframes blink {
+    0% {
+        content: "";
+    }
+    20% {
+        content: ".";
+    }
+    40% {
+        content: "..";
+    }
+    60% {
+        content: "...";
+    }
+    80% {
+        content: "....";
+    }
+    100%{
+        content: ".....";
+    }
+}
+
+.loading {
+    font-weight: bold;
+}
+  
+.dots {
+    display: inline-block;
+    position: relative;
+    width: 12px;
+}
+  
+.dots::after {
+    content: "";
+    animation: blink 1.5s step-start infinite;
+}

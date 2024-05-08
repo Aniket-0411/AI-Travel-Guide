@@ -10,23 +10,24 @@ import EmailMeButton from "./Components/EmailMe";
 import ResetPassword from "./Pages/ResetPassword";
 import SetNewPassword from "./Pages/SetNewPassword";
 import Profile from "./Pages/Profile";
+import ListView from "./Pages/ListView";
 
 function App() {
   return (
     <BrowserRouter>
       <div>
         <Navigation/>
-        <div>
           <Routes>
-            <Route path="/" exact element={<MainPage/>}/>
+            <Route path="/" exact element={<ListView/>}/>
             <Route path="/chat" exact element ={<ChatAI/>}/>
             <Route path="/login" exact element={<Login/>}/>
             <Route path="/register" exact element={<Register/>}/>
             <Route path="/reset-password" element={<ResetPassword/>}/>
             <Route path="/set-password/:resetToken" element={<SetNewPassword/>}/>
             <Route path="/profile" exact element={<Profile/>}/>
+            <Route path="/list" exact element={<ListView/>}/>
+            <Route path="*" element={<MainPage />} />
           </Routes>
-        </div>
           {/* <EmailMeButton dataToSend="Test" recipientEmail="ani.chopade57@gmail.com"/> */}
       </div>
     </BrowserRouter>

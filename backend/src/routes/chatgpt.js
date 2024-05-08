@@ -36,6 +36,6 @@ router.post("/", async(req, res) =>{
     console.log("=====ERROR=====\n", error)
     res.status(500).json("Server Error: ", error)
   }
-})
+});
 
 module.exports = router;
