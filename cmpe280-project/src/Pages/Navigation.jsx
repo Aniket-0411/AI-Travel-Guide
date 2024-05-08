@@ -17,6 +17,10 @@ const Navigation = () => {
         }
     }
 
+    const toProfile = () => {
+        navigate("/profile");
+    }
+
     const isAuthenticated = Cookies.get('token');
     const username = Cookies.get('username');
 
@@ -32,8 +36,8 @@ const Navigation = () => {
                     isAuthenticated ? 
                     <React.Fragment>
                         <div className="links">
-                            <div className="nav-user"><li className="nav-user-text">{username}</li></div>
-                            <div className="nav-user" onClick={signout}><li className="nav-user-text">Logout</li></div>
+                            <div className="nav-user" onClick={toProfile}><li className="nav-user-text nav-username">{username}</li></div>
+                            <div className="nav-user" onClick={signout}><li className="nav-user-text nav-logout">Logout</li></div>
                         </div>
                     </React.Fragment>
                     :

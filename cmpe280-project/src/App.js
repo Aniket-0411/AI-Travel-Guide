@@ -9,6 +9,7 @@ import ChatAI from "./Pages/ChatAI"
 import EmailMeButton from "./Components/EmailMe";
 import ResetPassword from "./Pages/ResetPassword";
 import SetNewPassword from "./Pages/SetNewPassword";
+import Profile from "./Pages/Profile";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/register" exact element={<Register/>}/>
             <Route path="/reset-password" element={<ResetPassword/>}/>
             <Route path="/set-password/:resetToken" element={<SetNewPassword/>}/>
+            <Route path="/profile" exact element={<Profile/>}/>
           </Routes>
         </div>
           {/* <EmailMeButton dataToSend="Test" recipientEmail="ani.chopade57@gmail.com"/> */}

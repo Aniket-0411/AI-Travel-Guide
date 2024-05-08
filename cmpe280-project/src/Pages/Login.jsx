@@ -45,7 +45,7 @@ const Login = () => {
     }
 
     const login = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
 
         if (userInput.username === "" || userInput.password === ""
             || userInput.username === null || userInput.password === null) {
@@ -64,7 +64,7 @@ const Login = () => {
                 document.cookie = "username=" + data.data.username + ";" + expires + ";"
 
                 navigate("/");
-                window.location.reload();
+                // window.location.reload();
             }
             catch (error) {
                 if (
@@ -94,6 +94,11 @@ const Login = () => {
                         required
                         onClick={removeErr}
                         onChange={userInputOnChange}
+                        onKeyDown={(event) => {
+                            if(event.key === "Enter"){
+                                login();
+                            }
+                        }}
                     />
                 </div>
                 <div className='password-tf'>
@@ -106,6 +111,11 @@ const Login = () => {
                         required
                         onClick={removeErr}
                         onChange={userInputOnChange}
+                        onKeyDown={(event) => {
+                            if(event.key === "Enter"){
+                                login();
+                            }
+                        }}
                         InputProps={{
                             endAdornment: (
                                 <InputAdornment position='end'>

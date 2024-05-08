@@ -1,0 +1,35 @@
+.profile-div {
+    margin-left: 10%;
+}
+
+.profile-header {
+    font-size: 40px;
+}
+
+.profile-info {
+    font-size: 20px;
+}
+
+.profile-info-div{
+    margin-top: 2rem;
+}
+
+.profile-text-field {
+    margin-right: 10%;
+}
+
+.profile-password-btns {
+    margin-top: 2rem;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    gap: 10rem;
+}
+
+.lower-tf {
+    margin-top: 1rem
+}
+
+.profile-reset-info {
+    margin-top: 1rem;
+}

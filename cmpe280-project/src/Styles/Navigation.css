@@ -59,3 +59,11 @@
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.nav-logout:hover {
+    color: red;
+}
+
+.nav-username:hover {
+    color:rgb(181, 118, 1); 
+}

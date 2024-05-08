@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, TextField, IconButton, InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import axios from "axios";
+import Cookies from "js-cookie";
 
 import "../Styles/Form.css";
 import "../Styles/General.css";
@@ -18,6 +19,14 @@ const Register = () => {
         password: "",
     });
     const [error, setError] = useState("");
+
+    useEffect(() => {
+        // Check if user is already authenticated (e.g., token exists in cookies) if yes then redirect to MainPage
+        const token = Cookies.get('token');
+        if (token) {
+            navigate("/");
+        }
+    }, [navigate]);
 
     const handleVisibility = () => {
         if(error !== ""){
@@ -44,7 +53,7 @@ const Register = () => {
     }
 
     const register = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         console.log(document.getElementById("confirm").value);
 
         if(userInput.username === "" || userInput.password === ""
@@ -70,7 +79,7 @@ const Register = () => {
                 document.cookie = "username=" + data.data.username + ";" + expires + ";"
 
                 navigate("/");
-                window.location.reload();
+                // window.location.reload();
             }
             catch (error){
                 if (
@@ -100,6 +109,11 @@ const Register = () => {
                         required
                         onClick={removeErr}
                         onChange={userInputOnChange}
+                        onKeyDown={(event) => {
+                            if(event.key === "Enter"){
+                                register();
+                            }
+                        }}
                     />
                 </div>
                 <div className='username-tf'>
@@ -112,6 +126,11 @@ const Register = () => {
                         required
                         onClick={removeErr}
                         onChange={userInputOnChange}
+                        onKeyDown={(event) => {
+                            if(event.key === "Enter"){
+                                register();
+                            }
+                        }}
                     />
                 </div>
                 <div className='password-tf'>
@@ -125,6 +144,11 @@ const Register = () => {
                         required
                         onClick={removeErr}
                         onChange={userInputOnChange}
+                        onKeyDown={(event) => {
+                            if(event.key === "Enter"){
+                                register();
+                            }
+                        }}
                         InputProps={{
                             endAdornment: (
                                 <InputAdornment position='end'>
@@ -148,6 +172,11 @@ const Register = () => {
                         variant="outlined"
                         required
                         onClick={removeErr}
+                        onKeyDown={(event) => {
+                            if(event.key === "Enter"){
+                                register();
+                            }
+                        }}
                         InputProps={{
                             endAdornment: (
                                 <InputAdornment position='end'>

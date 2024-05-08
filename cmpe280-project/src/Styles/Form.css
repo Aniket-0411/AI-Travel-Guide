@@ -44,3 +44,10 @@
     text-align: center;
     justify-content: center;
 }
+
+.succ-container {
+    color: green;
+    margin-bottom: 20px;
+    text-align: center;
+    justify-content: center; 
+}
