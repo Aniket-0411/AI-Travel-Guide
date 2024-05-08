@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, TextField, IconButton, InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import axios from 'axios';
+import Cookies from 'js-cookie'; // Import Cookies library
 
 import "../Styles/Form.css";
 import "../Styles/General.css";
@@ -17,31 +18,40 @@ const Login = () => {
     });
     const [error, setError] = useState("");
 
+    useEffect(() => {
+        // Check if user is already authenticated (e.g., token exists in cookies) if yes then redirect to MainPage
+        const token = Cookies.get('token');
+        if (token) {
+            navigate("/");
+        }
+    }, [navigate]);
+
+    //Password Visibility
     const handleVisibility = () => {
-        if(error !== ""){
+        if (error !== "") {
             setError("");
         }
         setShowPassword(!showPassword);
     }
 
     const removeErr = () => {
-        if(error !== ""){
+        if (error !== "") {
             setError("");
         }
     }
 
     const userInputOnChange = (e) => {
-        setUserInput({...userInput, [e.target.name]: e.target.value});
+        setUserInput({ ...userInput, [e.target.name]: e.target.value });
     }
 
     const login = async (e) => {
         e.preventDefault();
 
-        if(userInput.username === "" || userInput.password === ""
-            || userInput.username === null || userInput.password === null){
+        if (userInput.username === "" || userInput.password === ""
+            || userInput.username === null || userInput.password === null) {
             setError("Username and Password cannot be empty.")
         }
-        else{
+        else {
             try {
                 const url = "http://localhost:3001/accounts/login";
                 const data = await axios.post(url, userInput);
@@ -56,7 +66,7 @@ const Login = () => {
                 navigate("/");
                 window.location.reload();
             }
-            catch (error){
+            catch (error) {
                 if (
                     error.response &&
                     error.response.status >= 400 &&
@@ -68,7 +78,7 @@ const Login = () => {
         }
     }
 
-    return(
+    return (
         <div className='form-container'>
             <div className='form-title'>
                 <h1 className="page-title-text">Login</h1>
@@ -103,7 +113,7 @@ const Login = () => {
                                         onClick={handleVisibility}
                                         onMouseDown={(e) => e.preventDefault()}
                                     >
-                                        {showPassword ? <Visibility/> : <VisibilityOff/>}
+                                        {showPassword ? <Visibility /> : <VisibilityOff />}
                                     </IconButton>
                                 </InputAdornment>
                             )
