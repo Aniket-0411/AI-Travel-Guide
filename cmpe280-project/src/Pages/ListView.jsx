@@ -55,6 +55,7 @@ const ListView = () => {
         const result = await axios.post("http://localhost:3001/chat", {prompt: prompt});
         setLoading(false);
         setMessage(result.data);
+        console.log(result.data);
         setEmailData({...emailData, from: formData.from, to: formData.to,days: formData.days, responseDetails: result.data });
         setFormData(initialFormData);
     };

@@ -1,10 +1,24 @@
 import React from 'react';
 import EmailMeButton from './EmailMe';
+import { ConstructionRounded } from '@mui/icons-material';
 
 const TripDocumentGenerator = ({ tripData }) => {
     const generateHTMLDocument = (tripData) => {
         // Extracting data from tripData
         const { from, to, days, responseDetails } = tripData;
+
+        // Function to replace odd instances of ** with <b> and even instances of ** with </b>
+        const replaceBoldTags = (text) => {
+            let count = 0; // Counter to track instances of **
+            return text.replace(/\*\*/g, () => {
+                count++; // Increment the counter for each instance of **
+                return count % 2 === 1 ? "<b>" : "</b>"; // Replace odd instances with <b> and even instances with </b>
+            });
+        };
+        const boldHandleResponse = replaceBoldTags(responseDetails);
+
+        // Split the text into paragraphs based on newline characters
+        const paragraphs = boldHandleResponse.split('\n');
 
         // Generating HTML document
         const htmlDocument = `
@@ -36,7 +50,11 @@ const TripDocumentGenerator = ({ tripData }) => {
                     <p><strong>From:</strong> ${from}</p>
                     <p><strong>To:</strong> ${to}</p>
                     <p><strong>Duration:</strong> ${days} days</p>
-                    <p><strong>Details:</strong><br>${responseDetails}</p>
+                    <p><strong>Details:</strong><br>
+                        <div>
+                        ${paragraphs.map(paragraph => `<p>${paragraph}</p>`).join('')}
+                        </div>
+                    </p>
                 </div>
             </body>
             </html>
@@ -46,7 +64,6 @@ const TripDocumentGenerator = ({ tripData }) => {
     };
 
     const htmlDocument = generateHTMLDocument(tripData);
-
     return (
         <div>
             {htmlDocument && (
@@ -55,6 +72,5 @@ const TripDocumentGenerator = ({ tripData }) => {
         </div>
     );
 };
-
 
 export default TripDocumentGenerator;
