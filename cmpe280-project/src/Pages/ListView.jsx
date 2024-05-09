@@ -48,14 +48,13 @@ const ListView = () => {
         setFormData(initialFormData);
     };
 
-      const handleClearInputs = () => {
+    const handleClearInputs = () => {
         setFormData({...formData, 
             budget: "",
             people: "",
             ethnicity: "",
             method: "",
         });
-        setMessage("");
     }
     
     return (
