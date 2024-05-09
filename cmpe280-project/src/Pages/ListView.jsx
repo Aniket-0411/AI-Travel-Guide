@@ -7,6 +7,7 @@ import axios from "axios";
 import "../Styles/ListView.css";
 import "../Styles/General.css"
 import EmailMeButton from "../Components/EmailMe";
+import TripDocumentGenerator from "../Components/TripDocumentGenerator";
 
 const ListView = () => {
     const navigate = useNavigate();
@@ -21,9 +22,17 @@ const ListView = () => {
         method: "",
     };
 
+    const initialEmailData = {
+        from: "",
+        to: "",
+        days: "",
+        responseDetails: ""
+    }
+
     const [formData, setFormData] = useState(initialFormData);
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
+    const [emailData, setEmailData] = useState(initialEmailData);
     
     const handleInputChange = (e) => {
         setFormData({...formData, [e.target.name]: e.target.value});
@@ -46,6 +55,7 @@ const ListView = () => {
         const result = await axios.post("http://localhost:3001/chat", {prompt: prompt});
         setLoading(false);
         setMessage(result.data);
+        setEmailData({...emailData, from: formData.from, to: formData.to,days: formData.days, responseDetails: result.data });
         setFormData(initialFormData);
     };
 
@@ -175,7 +185,7 @@ const ListView = () => {
                         <ReactMarkdown>{message}</ReactMarkdown>
                     </div>
                     <div className="list-btns margin-bot-2rem">
-                        <EmailMeButton dataToSend="text"/> 
+                    <TripDocumentGenerator tripData={emailData}/>
                     </div> 
                 </React.Fragment>
             }

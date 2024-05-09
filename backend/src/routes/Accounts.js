@@ -84,7 +84,7 @@ router.post("/send-email", async (req, res) => {
             },
             to: recipientEmail,
             subject: 'Your Trip Itinerary',
-            html: `<p>Test Data ${data}</p>`
+            html: `${data}</p>`
         };
 
         transporter.sendMail(mailOptions, (error, info) => {
