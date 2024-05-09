@@ -28,7 +28,7 @@ function App() {
             <Route path="/list" exact element={<ListView/>}/>
             <Route path="*" element={<MainPage />} />
           </Routes>
-          {/* <EmailMeButton dataToSend="Test" recipientEmail="ani.chopade57@gmail.com"/> */}
+          
       </div>
     </BrowserRouter>
   );

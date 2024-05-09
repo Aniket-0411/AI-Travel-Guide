@@ -6,6 +6,7 @@ import axios from "axios";
 
 import "../Styles/ListView.css";
 import "../Styles/General.css"
+import EmailMeButton from "../Components/EmailMe";
 
 const ListView = () => {
     const navigate = useNavigate();
@@ -174,7 +175,7 @@ const ListView = () => {
                         <ReactMarkdown>{message}</ReactMarkdown>
                     </div>
                     <div className="list-btns margin-bot-2rem">
-                        <Button variant="contained" color="success">Email Me</Button>
+                        <EmailMeButton dataToSend="text"/> 
                     </div> 
                 </React.Fragment>
             }
