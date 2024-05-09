@@ -91,6 +91,7 @@ const ListView = () => {
                         value={formData.days}
                         onChange={handleInputChange}
                         fullWidth
+                        inputProps={{ min: 0 }}
                         required
                     />
                 </div>
@@ -109,7 +110,10 @@ const ListView = () => {
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">$</InputAdornment>
-                                    )
+                                    ),
+                                    inputProps: {
+                                        min: 0
+                                    }
                                 }}
                             />
                         </div>
@@ -121,6 +125,7 @@ const ListView = () => {
                                 id="people"
                                 value={formData.people}
                                 onChange={handleInputChange}
+                                inputProps={{ min: 0 }}
                                 fullWidth
                             />
                         </div>
