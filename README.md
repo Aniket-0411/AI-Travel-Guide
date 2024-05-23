@@ -35,6 +35,21 @@ cd backend
 npm install
 ```
 
+## Other Instruction
+In order to run the backend, you need to have a ".env" file under the "backend" folder
+### Backend terminal
+```
+touch .env
+```
+#### .env file modification
+Copy and modify the follow text to the .env file either using VSCode or local file editor
+```
+CHATGPT_API_KEY=<Your-OpenAI-API-Key>
+PORT=3001
+EMAIL_USER=noreply.aitravelguide@gmail.com
+EMAIL_PASSWORD=lmvntqwswhotacnd
+```
+
 ## Run
 ### Frontend terminal
 ```
