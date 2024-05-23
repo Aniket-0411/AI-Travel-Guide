@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 
 import Navigation from "./Pages/Navigation";
-import MainPage from "./Pages/MainPage";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import ChatAI from "./Pages/ChatAI"
@@ -11,6 +10,7 @@ import ResetPassword from "./Pages/ResetPassword";
 import SetNewPassword from "./Pages/SetNewPassword";
 import Profile from "./Pages/Profile";
 import ListView from "./Pages/ListView";
+import ErrorPage from "./Pages/ErrorPage";
 
 function App() {
   return (
@@ -26,7 +26,7 @@ function App() {
             <Route path="/set-password/:resetToken" element={<SetNewPassword/>}/>
             <Route path="/profile" exact element={<Profile/>}/>
             <Route path="/list" exact element={<ListView/>}/>
-            <Route path="*" element={<MainPage />} />
+            <Route path="*" element={<ErrorPage />} />
           </Routes>
           
       </div>
