@@ -49,6 +49,8 @@ PORT=3001
 EMAIL_USER=noreply.aitravelguide@gmail.com
 EMAIL_PASSWORD=lmvntqwswhotacnd
 ```
+### NOTE
+If your API Key is from SJSU account, you may not be able to run the ChatGPT OpenAI API. The model we used, gpt-4o may not exists in your account. Check your model availability in platform.openai.com.
 
 ## Run
 ### Frontend terminal
