@@ -37,3 +37,7 @@ app.listen(PORT || process.env.PORT, (err) => {
         console.log(`App listening on port ${PORT}`);
     }
 })
+
+app.get("/",(req,res) =>{
+    res.json("Server is running")
+})
