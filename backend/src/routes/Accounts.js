@@ -118,7 +118,6 @@ router.post("/reset-password", async (req, res) => {
     try{
         console.log(req.body);
         const user = await User.findOne({username: req.body.username});
-
         const salt = await bcrypt.genSalt(Number(12));
         const hash = await bcrypt.hash(req.body.password, salt);
         user.password = hash;

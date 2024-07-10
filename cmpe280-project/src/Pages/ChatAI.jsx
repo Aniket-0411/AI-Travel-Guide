@@ -43,7 +43,7 @@ export default function Chat(){
 
   async function AIprompt(text){
     try{
-      await fetch("http://localhost:3001/chat",{
+      await fetch(`${process.env.REACT_APP_SERVER_URL}/chat`,{
         method: "POST",
         headers: { "Content-Type": "application/json" },
           credentials: "include",

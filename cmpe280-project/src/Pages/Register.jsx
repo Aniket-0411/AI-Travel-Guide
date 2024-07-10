@@ -68,7 +68,7 @@ const Register = () => {
         }
         else{
             try {
-                const url = "http://localhost:3001/accounts/signup";
+                const url = `${process.env.REACT_APP_SERVER_URL}/accounts/signup`;
                 const data = await axios.post(url, userInput);
 
                 var date = new Date();

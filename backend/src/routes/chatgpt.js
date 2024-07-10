@@ -7,6 +7,8 @@ client = new OpenAI({
   apiKey: process.env.CHATGPT_API_KEY
 });
 
+// URL Testing endpoint http://localhost:3001/chat/
+
 router.post("/", async(req, res) =>{
   try{ 
     user_prompt = req.body.prompt

@@ -52,7 +52,7 @@ const ListView = () => {
         prompt += formData.ethnicity ? ` The Ethnicity for us are ${formData.ethnicity}.` : "";
         prompt += formData.method ? ` The transportation method we plan to use is ${formData.method}.` : "";
 
-        const result = await axios.post("http://localhost:3001/chat", {prompt: prompt});
+        const result = await axios.post(`${process.env.REACT_APP_SERVER_URL}/chat`, {prompt: prompt});
         setLoading(false);
         setMessage(result.data);
         console.log(result.data);

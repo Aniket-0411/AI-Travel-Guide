@@ -4,6 +4,8 @@ const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 const bcrypt = require('bcrypt');
 
+// URL Testing endpoint http://localhost:3001/resetpassword/
+
 router.post("/", async (req, res) => {
     try {
         const { email } = req.body;
@@ -22,7 +24,7 @@ router.post("/", async (req, res) => {
         await user.save();
 
         // Send password reset email
-        const resetLink = `http://localhost:3000/set-password/${resetToken}`; // Change the URL to your frontend reset password page
+        const resetLink = `${process.env.CLIENT_URL}/set-password/${resetToken}`; // Change the URL to your frontend reset password page
         
         
         const transporter = nodemailer.createTransport({

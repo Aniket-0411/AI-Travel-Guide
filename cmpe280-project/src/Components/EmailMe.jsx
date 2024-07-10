@@ -22,7 +22,7 @@ const EmailMeButton = ({ dataToSend }) => {
 
   const fetchUserEmail = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/accounts/profile', {
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/accounts/profile`, {
         params: {
           username: Cookies.get('username')
         }
@@ -36,7 +36,7 @@ const EmailMeButton = ({ dataToSend }) => {
   const handleEmailSending = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.post('http://localhost:3001/accounts/send-email', {
+      const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/accounts/send-email`, {
         data: dataToSend,
         recipientEmail: recipientEmail
       });

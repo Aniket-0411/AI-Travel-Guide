@@ -28,7 +28,7 @@ const Profile = () => {
         }
 
         const fetchItem = async (username) => {
-            const result = await axios.get(`http://localhost:3001/accounts/profile`, {
+            const result = await axios.get(`${process.env.REACT_APP_SERVER_URL}/accounts/profile`, {
                 params: { username }
             });
             setUserData(prev => ({
@@ -83,7 +83,7 @@ const Profile = () => {
         }
         else {
             try {
-                const url = "http://localhost:3001/accounts/reset-password";
+                const url = `${process.env.REACT_APP_SERVER_URL}/accounts/reset-password`;
                 const data = await axios.post(url, userData);
                 setChange();
                 setSuccess(data.data.message);

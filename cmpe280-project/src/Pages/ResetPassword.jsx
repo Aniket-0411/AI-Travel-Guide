@@ -11,7 +11,7 @@ const ResetPassword = () => {
   const handleResetPassword = async () => {
     setIsLoading(true); // Start loading animation
     try {
-      const response = await axios.post('http://localhost:3001/resetpassword', { email });
+      const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/resetpassword`, { email });
       setMessage(response.data.message);
     } catch (error) {
       setMessage(error.response.data.message);

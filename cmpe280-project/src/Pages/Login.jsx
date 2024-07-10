@@ -53,7 +53,7 @@ const Login = () => {
         }
         else {
             try {
-                const url = "http://localhost:3001/accounts/login";
+                const url = `${process.env.REACT_APP_SERVER_URL}/accounts/login`;
                 const data = await axios.post(url, userInput);
 
                 var date = new Date();
