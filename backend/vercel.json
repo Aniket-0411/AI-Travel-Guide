@@ -11,8 +11,5 @@
       "src": "/(.*)",
       "dest": "/src/index.js"
     }
-  ],
-  "env": {
-    "REACT_APP_CLIENT_URL": "@react_app_client_url"
-  }
+  ]
 }
