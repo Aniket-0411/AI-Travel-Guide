@@ -18,16 +18,18 @@ app.use("/accounts", accountRoutes);
 app.use("/chat", chatRoutes)
 app.use("/resetpassword", resetPasswordRoutes)
 
-try{
-    mongoose.connect(
-        'mongodb+srv://cmpe-280:Top1LmxG1HNXG5e2@cmpe280-project.ldcbhdl.mongodb.net/?retryWrites=true&w=majority&appName=cmpe280-project',
-    );
-    console.log("DB Connected");
-}
-catch (error) {
-    console.log(error);
-    console.log("DB Connect Failed!");
-}
+mongoose.connect(
+    'mongodb+srv://cmpe-280:Top1LmxG1HNXG5e2@cmpe280-project.ldcbhdl.mongodb.net/?retryWrites=true&w=majority&appName=cmpe280-project',
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        serverSelectionTimeoutMS: 5000 // Timeout after 5s instead of 30s
+    }
+).then(() => console.log("DB Connected"))
+ .catch(err => {
+     console.error("DB Connect Failed!", err);
+ });
+
 
 app.listen(process.env.PORT || PORT, (err) => {
     if(err){

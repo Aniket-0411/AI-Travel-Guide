@@ -178,7 +178,7 @@ const ListView = () => {
                     <Button variant="contained" color="secondary" type="button" onClick={() => navigate("/chat")}>Chat View</Button>
                 </div>
             </form>
-            {loading && <div className="loading-container"><p className="loading">Generating Plan<span className="dots"></span></p></div>}
+            {loading && <div className="loading-container"><p className="loading">Generating Plan<span className="dots"></span><br/>This may take upto a minute</p></div>}
             {
                 message &&
                 <React.Fragment>
