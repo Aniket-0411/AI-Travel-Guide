@@ -29,7 +29,7 @@ catch (error) {
     console.log("DB Connect Failed!");
 }
 
-app.listen(PORT || process.env.PORT, (err) => {
+app.listen(process.env.PORT || PORT, (err) => {
     if(err){
         console.log("Error", err);
     }
