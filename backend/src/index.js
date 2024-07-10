@@ -12,7 +12,7 @@ const resetPasswordRoutes = require('./routes/resetpassword')
 const PORT = 3001;
 
 const app = express();
-app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
+app.use(cors({ origin: process.env.REACT_APP_CLIENT_URL, credentials: true }));
 app.use(express.json());
 app.use("/accounts", accountRoutes);
 app.use("/chat", chatRoutes)

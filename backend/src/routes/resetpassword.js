@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
         await user.save();
 
         // Send password reset email
-        const resetLink = `${process.env.CLIENT_URL}/set-password/${resetToken}`; // Change the URL to your frontend reset password page
+        const resetLink = `${process.env.REACT_APP_CLIENT_URL}/set-password/${resetToken}`; // Change the URL to your frontend reset password page
         
         
         const transporter = nodemailer.createTransport({
